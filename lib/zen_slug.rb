@@ -21,8 +21,10 @@ module ZenSlug
       validates :slug, :presence => true, :uniqueness => true
       #, :format => {:with => /\A[^0-9].*/}
       class_eval <<-EOV
-        include SlugableMixin::Overrides
+        include ZenSlug::Overrides
       EOV
     end
   end
 end
+
+ActiveRecord::Base.send :include, ZenSlug
